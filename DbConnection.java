@@ -60,8 +60,8 @@ class DbConnection{
 	}
 	public Map<Integer,Map<Long,UserData>> retrieveUsers()throws Exception{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		if(con==null)
-			System.out.println("bb");
+		//if(con==null)
+			//System.out.println("bb");
 		getConnection();
 		try(Statement statement = con.createStatement();ResultSet rs = statement.executeQuery("select a.id,a.name,b.no,b.balance from "+table1+" as a inner join "+table2+" as b on a.id=b.id")){
 			while(rs.next()){
