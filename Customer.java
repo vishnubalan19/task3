@@ -1,4 +1,5 @@
-class Customer{
+package com.bankapplication.customer;
+public class Customer{
 	private int id;
 	private String name;
 	public void setId(int id){

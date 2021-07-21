@@ -1,8 +1,15 @@
-import java.util.*;
-class DbApplication{
+package com.bankapplication.dbapplication;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Scanner;
+import com.bankapplication.account.Account;
+import com.bankapplication.customer.Customer;
+import com.bankapplication.dbconnection.DbConnection;
+public class DbApplication{
 	int id = 1;
 	DbConnection dbConnection = new DbConnection();
-	Map <Integer,Map<Long,UserData>> dbHashMap = new HashMap<>();
+	Map <Integer,Customer> customerMap = new HashMap<>();
+	Map <Integer,Map<Long,Account>> dbHashMap = new HashMap<>();
 	public void getUserChoice()throws Exception{
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Database Application");
@@ -34,6 +41,7 @@ class DbApplication{
 					Customer customer = new Customer();
 					customer.setId(id);
 					customer.setName(name);
+					customerMap.put(id,customer);
 					dbConnection.insertUser(customer);
 					System.out.println("Enter the no. of accounts for user");
 					int noOfAccounts = scanner.nextInt();
@@ -64,9 +72,9 @@ class DbApplication{
 						System.out.println("Enter id");
 						int id = scanner.nextInt();
 						if(dbHashMap.containsKey(id)){
-							Map<Long,UserData> tempMap = dbHashMap.get(id);
+							Map<Long,Account> tempMap = dbHashMap.get(id);
 							for(Long t : tempMap.keySet()){
-								System.out.print(tempMap.get(t).getId()+" "+tempMap.get(t).getName()+" "+tempMap.get(t).getAccountNo()+" "+tempMap.get(t).getBalance());
+								System.out.print(tempMap.get(t).getId()+" "+customerMap.get(tempMap.get(t).getId()).getName()+" "+tempMap.get(t).getAccountNo()+" "+tempMap.get(t).getBalance());
 								System.out.println();
 							}
 						}

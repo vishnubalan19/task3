@@ -1,4 +1,5 @@
-class Account{
+package com.bankapplication.account;
+public class Account{
 	private int id;
 	private int balance;
 	private long accountNo;
